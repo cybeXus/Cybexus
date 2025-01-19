@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cybeXus | IT company</title>
+</head>
+<body>
+        <h1>Welcome user , we are cybeXus</h1>
+        <a href="{% url 'sign_in'%}">Sign in</a>
+        <a href="{% url 'login' %}">login</a>
+
+
+        <h1>Nos Formations</h1>
+        <ul>
+            {% for formation in formations %}
+                <li>{{ formation.titre }} - {{ formation.description }}</li>
+                
+                {% if formation.video %}
+                    <video width="320" height="240" controls>
+                        <source src="{{ formation.video.url }}" type="video/mp4">
+                    </video>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        
+        
+
+
+
+        <h1>blog</h1>
+
+</body>
+</html>
