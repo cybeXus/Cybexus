@@ -1,0 +1,145 @@
+body {
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+    background: rgb(243, 243, 243);
+    background-size: 300% 300%;
+    animation: gradientBackground 6s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #000000;
+    text-shadow: 0 0 20px #000000;
+    margin: -5%;
+    padding: 20%;
+    margin-left: -60%;
+    animation: fadeIn 2s ease-in-out;
+}
+
+a {
+    color: #d1d3d2;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease, text-decoration 0.3s ease;
+}
+
+a:hover {
+    color: #000000;
+    text-shadow: 0 0 10px #b9fbc0;
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+li {
+    background: rgba(0, 128, 0, 0.1);
+    border: 1px solid #53ff98;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(90, 156, 116, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(90, 156, 116, 0.7);
+}
+
+video {
+    display: block;
+    margin: 10px auto;
+    border: 2px solid #53ff98;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #53ff98;
+    animation: fadeIn 2s ease-in-out;
+}
+
+img {
+    width: 55%;
+    height: auto;
+    margin-right: 15px;
+    margin-left: 45%;
+    margin-top: -27%;
+    animation: fadeIn 2s ease-in-out;
+}
+
+nav {
+    position: fixed;
+    top: 25px;
+    left: 0;
+    width: 94%;
+    height: 60px;
+    background-color: green;
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    color: rgb(12, 129, 47);
+    margin-left: 2%;
+    animation: slideDown 1s ease-in-out;
+}
+
+nav a {
+    margin: 0 15px;
+    font-size: 1.2rem;
+}
+
+#about {
+    background-color: rgba(0, 128, 0, 0.1);
+    border: 1px solid #53ff98;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+#about h2 {
+    margin: 100px;
+    text-align: center;
+    color: #000;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
