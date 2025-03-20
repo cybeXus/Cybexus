@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Contacts - CybeXus</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+          
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+            color: black;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        nav {
+            position: fixed;
+            top: 5px;
+            left: 0;
+            width: 94%;
+            height: 60px;
+            background-color: rgba(0, 128, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            color: rgb(12, 129, 47);
+            margin-left: 2%;
+            animation: slideDown 1s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a {
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+
+        nav a:hover {
+            color: #d1f9a5;
+            text-shadow: 0 0 10px #d1f9a5;
+        }
+
+        /* Page Header */
+        header {
+            margin-top: 80px; /* Augmenter l'espace pour la navbar */
+            background: linear-gradient(to right, #28a745, #218838);
+            color: white;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center; /* Centrer le texte */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-container {
+            width: 80%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 128, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(0, 128, 0, 0.3);
+        }
+
+        .contact-item {
+            padding: 15px;
+            margin: 10px 0;
+            border-bottom: 1px solid #ccc;
+            transition: background 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: #f1f1f1;
+        }
+
+        a {
+            color: green;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #28a745;
+            text-decoration: underline;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            color: #155724;
+        }
+
+        /* Animations */
+        @keyframes gradientBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="#about">About</a>
+        <a href="{% url 'formation' %}">Nos formations</a>
+        <a href="{% url 'contact' %}">Contact</a>
+        <a href="{% url 'sign_in' %}">Sign in</a>
+    </nav>
+
+    <header>Nos Contacts</header>
+
+    <section class="contact-container">
+        <div class="contact-item">
+            <strong>Email :</strong> <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
+        </div>
+        <div class="contact-item">
+            <strong>Téléphone :</strong> {{ contacts.telephone }}
+        </div>
+        <div class="contact-item">
+            <strong>Adresse :</strong> {{ contacts.adresse }}
+        </div>
+        <div class="contact-item social-links">
+            <strong>Réseaux Sociaux :</strong>
+            <br>
+            {% for nom, lien in contacts.reseaux.items %}
+                <a href="{{ lien }}" target="_blank"><i class="fab fa-{{ nom|lower }}"></i></a>
+            {% endfor %}
+        </div>
+    </section>
+
+    <script>
+        // Animation pour l'apparition des éléments de contact
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactItems = document.querySelectorAll('.contact-item');
+            contactItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = 1;
+                    item.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // Ajout d'animations CSS pour l'entrée des éléments de contact
+        document.styleSheets[0].insertRule(`
+            .contact-item {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+            }
+        `);
+    </script>
+</body>
+</html>

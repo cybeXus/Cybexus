@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cybeXus | IT company</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'cybexus/css/index.css' %}">
+   <style>
+    body {
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+    background: white;
+    background-size: 300% 300%;
+    animation: gradientBackground 6s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.content-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #1b8d48;
+            border-radius: 10px;
+            padding: 20px;
+            max-width:95%;
+            margin: 70px auto;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        
+        .content-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .content-box li {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #000000;
+    text-shadow: 0 0 20px #000000;
+    margin: -5%;
+    padding: 20%;
+    margin-left: -60%;
+    animation: fadeIn 2s ease-in-out;
+}
+
+a {
+    color: #d1d3d2;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease, text-decoration 0.3s ease;
+}
+
+a:hover {
+    color: #000000;
+    text-shadow: 0 0 10px #b9fbc0;
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+li {
+    background: rgba(0, 128, 0, 0.1);
+    border: 1px solid #53ff98;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(90, 156, 116, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(90, 156, 116, 0.7);
+}
+
+video {
+    display: block;
+    margin: 10px auto;
+    border: 2px solid #53ff98;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #53ff98;
+    animation: fadeIn 2s ease-in-out;
+}
+
+img {
+    width: 55%;
+    height: auto;
+    margin-right: 15px;
+    margin-left: 45%;
+    margin-top: -27%;
+    animation: fadeIn 2s ease-in-out;
+}
+
+nav {
+    position: fixed;
+    top: 5px;
+    left: 0;
+    width: 94%;
+    height: 60px;
+    background-color: green;
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    color: rgb(12, 129, 47);
+    margin-left: 2%;
+    animation: slideDown 1s ease-in-out;
+}
+
+nav a {
+    margin: 0 15px;
+    font-size: 1.2rem;
+}
+
+#about {
+    background-color: rgba(0, 128, 0, 0.1);
+    border: 1px solid #010202;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px auto;
+    animation: fadeIn 2s ease-in-out;
+}
+
+#about h2 {
+    margin: 100px;
+    text-align: center;
+    color: #000;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+   </style>
+  
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="#about">About</a>
+        <a href="{% url 'formation' %}">Nos formations</a>
+        <a href="{% url 'contact' %}">Contact</a>
+        <a href="{% url 'sign_in' %}">Sign in</a>
+    </nav>
+    
+    
+    <section class="content-box">
+        <h1>Bienvenue cher utilisateur</h1>
+        <img src="{% static 'cybexus/image/cybexus.jpg' %}" alt="image">
+    </section>
+        <ul>
+            {% for formation in formations %}
+                <li>
+                    <strong>{{ formation.titre }}</strong> - {{ formation.description }}
+                    {% if formation.video %}
+                        <video width="320" height="240" controls>
+                            <source src="{{ formation.video.url }}" type="video/mp4">
+                        </video>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    
+    <section id="about">
+
+        <h2>À propos de nous</h2>
+
+        <p> Qui sommes-nous ?</p>
+
+        <p>
+           
+            
+            CybeXus est une entreprise spécialisée dans les technologies de l’information, la cybersécurité et le design numérique. Nous offrons des solutions avancées pour aider les entreprises et les particuliers à relever les défis du monde digital. Grâce à notre expertise en développement web, administration réseau, cybersécurité et design UI/UX, nous aidons nos clients à optimiser leur présence numérique tout en garantissant la protection de leurs données.</p>
+
+        <!-- Ajoutez d'autres informations pertinentes ici -->
+
+    </section>
+    <section id="formations"></section>
+    <section id="Contact"> </section>
+    <h1>Blog</h1>
+</body>
+</html>

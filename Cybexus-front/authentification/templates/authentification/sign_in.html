@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #030303;
+            color: #b9fbc0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 100px;
+        }
+
+        h1 {
+            color: #53ff98;
+            text-shadow: 0 0 20px #53ff98;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: rgba(0, 128, 0, 0.1);
+            border: 1px solid #53ff98;
+            border-radius: 10px;
+            padding: 20px;
+            width: 600px;
+            box-shadow: 0 0 20px rgba(83, 255, 152, 0.5);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #53ff98;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #53ff98;
+            border-radius: 5px;
+            background: #000;
+            color: #b9fbc0;
+            box-shadow: inset 0 0 10px rgba(83, 255, 152, 0.5);
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 10px #53ff98;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #53ff98;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background: #b9fbc0;
+            transform: scale(1.05);
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+       
+        <form method="POST" action="">
+            {% csrf_token %}
+            <h1>Créer un compte</h1>
+            <label for="frst_name">Nom :</label>
+            <input type="text" id="frst_name" name="frst_name" required>
+
+            <label for="last_name">Prenoms :</label>
+            <input type="text" id="last_name" name="last_name" required>
+
+            <label for="username">Nom d'utilisateur :</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Numero telephone :</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm_password">Confirmer le mot de passe :</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+
+            <button type="submit">S'inscrire</button>
+        </form>
+
+        {% for message in messages %}
+            <p class="error-message">{{ message }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

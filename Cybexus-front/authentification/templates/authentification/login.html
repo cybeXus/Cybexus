@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #b9fbc0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #53ff98;
+            text-shadow: 0 0 20px #53ff98;
+            text-align: center;
+        }
+
+        form {
+            background: rgba(0, 128, 0, 0.1);
+            border: 1px solid #53ff98;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 0 20px rgba(83, 255, 152, 0.5);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #53ff98;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #53ff98;
+            border-radius: 5px;
+            background: #000;
+            color: #b9fbc0;
+            box-shadow: inset 0 0 10px rgba(83, 255, 152, 0.5);
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 10px #53ff98;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #53ff98;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background: #b9fbc0;
+            transform: scale(1.05);
+        }
+
+        p {
+            text-align: center;
+            color: #53ff98;
+        }
+
+        a {
+            color: #b9fbc0;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover {
+            color: #53ff98;
+            text-shadow: 0 0 10px #53ff98;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Connexion</h1>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="error-message">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <label for="username">Nom d’utilisateur :</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Se connecter</button>
+            <p>
+                <a href="{% url 'password_reset' %}">Mot de passe oublié ?</a>
+            </p>
+        </form>
+
+        <!-- Lien vers le mot de passe oublié -->
+     
+    </div>
+</body>
+</html>
